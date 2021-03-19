@@ -18,6 +18,8 @@ public class ProductRepositoryH2Database implements ProductRepository{
     @Override
     public Collection<Product> getAllProducts() {
         String sql = "SELECT p FROM Product p";
+        
+        // FROM ANDY: I would rename this variable as "query" (for example). It's a query (which will yield a collection when executed).
         TypedQuery<Product> collection = entityManager.createQuery(sql, Product.class);
         return collection.getResultList();
     }
@@ -31,6 +33,7 @@ public class ProductRepositoryH2Database implements ProductRepository{
     @Override
     public Product insertProduct(Product product) {
 
+        // FROM ANDY: Yes indeed. I'll explain how this works shortly...
         if(product.getId() != -1) {
             throw new IllegalArgumentException("Product id must be -1 to be inserted");
         }
